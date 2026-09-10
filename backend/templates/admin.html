@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Admin Dashboard</h2>
+
+<h3>Users</h3>
+<table border="1">
+<tr>
+    <th>Username</th>
+    <th>Role</th>
+</tr>
+
+{% for user in users %}
+<tr>
+    <td>{{ user[0] }}</td>
+    <td>{{ user[1] }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h3>Logs</h3>
+<table border="1">
+<tr>
+    <th>User</th>
+    <th>Prediction</th>
+    <th>Time</th>
+</tr>
+
+{% for log in logs %}
+<tr>
+    <td>{{ log[0] }}</td>
+    <td>{{ log[1] }}</td>
+    <td>{{ log[2] }}</td>
+</tr>
+{% endfor %}
+</table>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignLang – Login / Sign Up</title>
+    <meta name="description" content="Sign in to SignLang – American and Indian Sign Language to text converter for inclusive communication.">
+    <link rel="stylesheet" href="/static/style.css">
+<script src="/static/script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-body">
+
+<div class="login-page-wrapper">
+
+    <!-- LEFT PANEL: Branding & Info -->
+    <div class="login-left">
+        <div class="login-brand">
+            <div class="login-logo">
+                <i class="fa-solid fa-hands-asl-interpreting"></i>
+            </div>
+            <h1 class="login-brand-name">SignLang</h1>
+        </div>
+
+        <div class="login-hero-text">
+            <h2>Breaking<br>Communication<br>Barriers</h2>
+            <p>Real-time conversion of American Sign Language (ASL) and Indian Sign Language (ISL) into text — making communication inclusive for everyone.</p>
+        </div>
+
+        <!-- Floating Info Cards on left -->
+        <div class="login-feature-chips">
+            <div class="chip"><i class="fa-solid fa-camera"></i> Live Camera Detection</div>
+            <div class="chip"><i class="fa-solid fa-flag-usa"></i> ASL Support</div>
+            <div class="chip"><i class="fa-solid fa-india"></i> ISL Support</div>
+            <div class="chip"><i class="fa-solid fa-bolt"></i> Real-time Output</div>
+        </div>
+
+        <!-- Decorative hand dots -->
+        <div class="login-hand-visual" aria-hidden="true">
+            <svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+                <!-- Connection lines -->
+                <path d="M100 155 L90 115 M90 115 L78 90 M78 90 L72 65 M72 65 L70 45" stroke="rgba(255,255,255,0.35)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                <path d="M90 115 L100 85 M100 85 L102 60 M102 60 L103 42" stroke="rgba(255,255,255,0.35)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                <path d="M90 115 L112 88 M112 88 L118 62 M118 62 L120 44" stroke="rgba(255,255,255,0.35)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                <path d="M90 115 L128 95 M128 95 L138 78 M138 78 L140 64" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M100 155 L73 138 M73 138 L55 130 M55 130 L43 132" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <!-- Joints (white) -->
+                <circle cx="100" cy="155" r="5" fill="rgba(255,255,255,0.9)"/>
+                <circle cx="73" cy="138" r="3.5" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="55" cy="130" r="3.5" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="43" cy="132" r="4.5" fill="rgba(255,130,200,0.95)"/>
+                <circle cx="90" cy="115" r="4" fill="rgba(255,255,255,0.8)"/>
+                <circle cx="78" cy="90" r="3.5" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="72" cy="65" r="3.5" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="70" cy="45" r="5" fill="rgba(160,120,255,0.95)"/>
+                <circle cx="100" cy="85" r="3.5" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="102" cy="60" r="3.5" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="103" cy="42" r="5" fill="rgba(160,120,255,0.95)"/>
+                <circle cx="112" cy="88" r="3.5" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="118" cy="62" r="3.5" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="120" cy="44" r="5" fill="rgba(160,120,255,0.95)"/>
+                <circle cx="128" cy="95" r="3.5" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="138" cy="78" r="3.5" fill="rgba(255,255,255,0.7)"/>
+                <circle cx="140" cy="64" r="5" fill="rgba(255,130,200,0.95)"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL: Auth Form -->
+    <div class="login-right">
+        <div class="login-form-box">
+
+            <div class="form-top-badge">
+                <span id="form-mode-badge">Welcome Back 👋</span>
+            </div>
+
+            <h2 id="form-title">Login</h2>
+            <p class="form-subtitle" id="form-subtitle">Sign in to access your Sign Language dashboard.</p>
+
+            <!-- NAME FIELD (signup only) -->
+            <div class="input-group" id="name-group" style="display:none;">
+                <label for="fullname"><i class="fa-regular fa-user"></i> Full Name</label>
+                <input type="text" id="fullname" placeholder="Your full name">
+            </div>
+
+            <!-- USERNAME -->
+            <div class="input-group">
+                <label for="username"><i class="fa-regular fa-envelope"></i> Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="input-group">
+                <label for="password"><i class="fa-solid fa-lock"></i> Password</label>
+                <div class="pass-wrapper">
+                    <input type="password" id="password" placeholder="Enter your password">
+                    <button type="button" class="pass-toggle" onclick="togglePassword('password', 'eye1')">
+                        <i class="fa-regular fa-eye" id="eye1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- CONFIRM PASSWORD (signup only) -->
+            <div class="input-group" id="confirm-group" style="display:none;">
+                <label for="confirmPassword"><i class="fa-solid fa-lock"></i> Confirm Password</label>
+                <div class="pass-wrapper">
+                    <input type="password" id="confirmPassword" placeholder="Re-enter your password">
+                    <button type="button" class="pass-toggle" onclick="togglePassword('confirmPassword', 'eye2')">
+                        <i class="fa-regular fa-eye" id="eye2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ERROR MESSAGE -->
+            <p class="error-msg" id="error"></p>
+
+            <!-- SUBMIT BUTTON -->
+            <button class="btn-main" onclick="handleAuth()" id="submit-btn">
+                <span id="btn-label">Sign In</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <!-- TOGGLE LINK -->
+            <p id="toggleText" class="toggle-text">
+                Don't have an account? <span onclick="toggleForm()">Sign Up</span>
+            </p>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

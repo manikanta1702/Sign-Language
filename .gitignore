@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+.DS_Store
+.env
+data/ASL/
+data/ISL/
+data/*.csv
+data/manual_csv/
+database.db
