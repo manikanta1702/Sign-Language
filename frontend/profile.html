@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="profile-container">
+    <h1>👤 User Profile</h1>
+
+    <div class="profile-card">
+        <p><b>Username:</b> <span id="profileUser"></span></p>
+    </div>
+
+    <button onclick="goHome()">⬅ Back to Home</button>
+</div>
+
+<script>
+document.getElementById("profileUser").innerText = localStorage.getItem("user");
+
+function goHome() {
+    window.location.href = "home.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+opencv-python
+mediapipe
+tensorflow
+numpy
+pandas
+scikit-learn
+flask
+flask-login
+flask-sqlalchemy
+pyttsx3
