@@ -1,0 +1,16 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+.DS_Store
+.env
+data/
+data/ISL/
+data/*.csv
+data/manual_csv/
+database.db
+.restore-paths.tmp
+backend/latest_prediction.json
+backend/translator_command.json

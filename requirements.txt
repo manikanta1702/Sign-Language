@@ -1,0 +1,11 @@
+opencv-python
+mediapipe
+tensorflow
+protobuf>=5.28.0,<6
+numpy
+pandas
+scikit-learn
+flask
+flask-login
+flask-sqlalchemy
+pyttsx3

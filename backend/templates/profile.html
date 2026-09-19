@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignEase - Profile</title>
+    <link rel="stylesheet" href="/static/style.css?v=9">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="profile-page">
+<div class="profile-shell">
+    <aside class="profile-sidebar">
+        <div class="profile-brand"><span><i class="fa-solid fa-hands"></i></span><strong>SignEase</strong></div>
+        <p class="profile-nav-label">Profile</p>
+        <button class="profile-nav-item active"><i class="fa-regular fa-user"></i> Edit profile</button>
+        <button class="profile-nav-item" onclick="goHome()"><i class="fa-solid fa-language"></i> Translator</button>
+        <button class="profile-nav-item"><i class="fa-regular fa-bell"></i> Notifications</button>
+        <p class="profile-nav-label profile-nav-spacer">Security</p>
+        <button class="profile-nav-item"><i class="fa-solid fa-lock"></i> Password</button>
+        <button class="profile-nav-item"><i class="fa-solid fa-shield-halved"></i> Privacy</button>
+        <div class="profile-sidebar-footer"><i class="fa-solid fa-circle-check"></i> Your data stays local</div>
+    </aside>
+
+    <main class="profile-workspace">
+        <header class="profile-topbar">
+            <div class="profile-search"><i class="fa-solid fa-magnifying-glass"></i><span>Search settings</span></div>
+            <div class="profile-top-actions"><span><i class="fa-regular fa-circle-question"></i></span><span><i class="fa-regular fa-bell"></i></span><div class="profile-mini-avatar" id="profileMiniAvatar">U</div></div>
+        </header>
+
+        <div class="profile-content">
+            <div class="profile-page-heading"><div><p class="profile-eyebrow">ACCOUNT CENTER</p><h1>Edit profile</h1><p>Manage your identity, translator activity, and preferences.</p></div><button class="profile-back-button" onclick="goHome()"><i class="fa-solid fa-arrow-left"></i> Back to translator</button></div>
+
+            <section class="profile-edit-grid">
+                <div class="profile-main-card">
+                    <div class="profile-cover"></div>
+                    <div class="profile-person-row"><div class="profile-avatar" id="profileAvatar">U</div><div><h2 id="profileName">User</h2><p id="profileEmail">Email not provided</p></div><span class="profile-status"><i class="fa-solid fa-circle"></i> Active</span></div>
+                    <div class="profile-section-block"><div class="profile-section-title"><h3>Personal information</h3><span>LOCAL ACCOUNT</span></div><div class="profile-info-grid"><div><label>Username</label><strong id="profileUsername">User</strong></div><div><label>Email</label><strong id="profileEmailDetail">Email not provided</strong></div><div><label>Last login</label><strong id="profileLoginTime">This session</strong></div><div><label>Device</label><strong id="profileDevice">Browser</strong></div></div></div>
+                    <div class="profile-section-block"><div class="profile-section-title"><h3>Translator activity</h3><span>RECENT</span></div><p class="profile-muted" id="profileSignsEmpty">Recognized signs will appear here as you use the translator.</p><div class="profile-sign-list" id="profileSigns"></div></div>
+                </div>
+
+                <aside class="profile-side-column">
+                    <div class="profile-completion"><div class="profile-section-title"><h3>Profile overview</h3><span>LIVE</span></div><div class="profile-ring"><strong id="profileCompletion">0%</strong></div><p>Keep your account ready for translation.</p><div class="profile-check"><i class="fa-solid fa-check"></i><span>Account created</span><b id="profileAccountStatus">Done</b></div><div class="profile-check"><i class="fa-solid fa-check"></i><span>Translator ready</span><b id="profileTranslatorStatus">Pending</b></div><div class="profile-check profile-camera-check"><i id="profileCameraIcon" class="fa-solid fa-circle-info"></i><span>Camera permission</span><b id="profileCamera">Pending</b></div></div>
+                    <div class="profile-preferences"><div class="profile-section-title"><h3>Preferences</h3><span>SETTINGS</span></div><div class="profile-preference-row"><span><i class="fa-solid fa-language"></i> Last language</span><strong id="profileLanguage">Not used yet</strong></div><div class="profile-preference-row"><span><i class="fa-regular fa-sun"></i> Theme</span><strong id="profileTheme">Light</strong></div><div class="profile-preference-row"><span><i class="fa-solid fa-shield-halved"></i> Privacy</span><strong>Local only</strong></div></div>
+                </aside>
+            </section>
+        </div>
+    </main>
+</div>
+
+<script>
+const username = localStorage.getItem("sl_user") || "User";
+const name = localStorage.getItem("sl_name") || username;
+const email = localStorage.getItem("sl_email") || (username.includes('@') ? username : 'Email not provided');
+const loginTime = localStorage.getItem("sl_login_time");
+const recentSigns = JSON.parse(localStorage.getItem("sl_recent_signs") || '[]');
+
+document.getElementById("profileName").innerText = name;
+document.getElementById("profileUsername").innerText = username;
+document.getElementById("profileEmail").innerText = email;
+document.getElementById("profileEmailDetail").innerText = email;
+document.getElementById("profileAvatar").innerText = name.charAt(0).toUpperCase();
+document.getElementById("profileMiniAvatar").innerText = name.charAt(0).toUpperCase();
+document.getElementById("profileLoginTime").innerText = loginTime
+    ? new Date(loginTime).toLocaleString()
+    : 'This session';
+document.getElementById("profileDevice").innerText = /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile browser' : 'Desktop browser';
+document.getElementById("profileLanguage").innerText = localStorage.getItem("sl_last_language") || 'Not used yet';
+document.getElementById("profileTheme").innerText = localStorage.getItem("sl_theme") === 'dark' ? 'Dark' : 'Light';
+const cameraAllowed = localStorage.getItem("sl_camera_permission") === 'granted';
+const translatorReady = Boolean(localStorage.getItem("sl_last_language"));
+const accountCreated = Boolean(localStorage.getItem("sl_user"));
+
+document.getElementById("profileCamera").innerText = cameraAllowed ? 'Allowed' : 'Not requested';
+const cameraIcon = document.getElementById("profileCameraIcon");
+cameraIcon.className = cameraAllowed ? 'fa-solid fa-check' : 'fa-solid fa-circle-info';
+cameraIcon.classList.toggle('profile-camera-warning', !cameraAllowed);
+document.getElementById("profileAccountStatus").innerText = accountCreated ? 'Done' : 'Pending';
+
+const completion = (accountCreated ? 40 : 0) + (translatorReady ? 30 : 0) + (cameraAllowed ? 30 : 0);
+document.getElementById("profileCompletion").innerText = `${completion}%`;
+document.querySelector(".profile-ring").style.setProperty('--completion', completion);
+document.getElementById("profileTranslatorStatus").innerText = translatorReady ? 'Done' : 'Pending';
+
+if (recentSigns.length) {
+    document.getElementById("profileSignsEmpty").style.display = 'none';
+    document.getElementById("profileSigns").innerHTML = recentSigns.map(sign => `<span>${sign}</span>`).join('');
+}
+
+function goHome() {
+    window.location.href = "/home";
+}
+</script>
+
+</body>
+</html>
